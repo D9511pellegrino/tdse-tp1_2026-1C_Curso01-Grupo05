@@ -24,3 +24,19 @@ Signals (Señales hacia el modelo System):
 EV_SYS_DOWN: Acción de salida (señal) enviada al modelo System para informarle de manera oficial y validada que el botón cambió a la posición down (esto ocurre al alcanzar el estado validado ST_BTN_2).
 
 EV_SYS_UP: Acción de salida (señal) enviada al modelo System notificando que el botón pasó a la posición up de forma legítima (esto ocurre al volver al estado de reposo ST_BTN_0).
+
+
+# Sensor Statechart - State Transition Table
+
+Comportamiento de un solo botón para el módulo de código C del tipo temporizado (period = 1ms).
+
+| Current State      | Event              | [Guard]     | Next State         | Actions              |
+|--------------------|--------------------|-------------|--------------------|----------------------|
+| **ST_BTN_UP**      | EV_BTN_PRESSED     | -           | **ST_BTN_FALLING** | tick = 0             |
+| **ST_BTN_FALLING** | EV_BTN_PRESSED     | tick >= DEL | **ST_BTN_DOWN**    | send EV_SYS_PRESSED  |
+| **ST_BTN_FALLING** | EV_BTN_NOT_PRESSED | tick < DEL  | **ST_BTN_UP**      | -                    |
+| **ST_BTN_DOWN**    | EV_BTN_NOT_PRESSED | -           | **ST_BTN_RISING**  | tick = 0             |
+| **ST_BTN_RISING**  | EV_BTN_NOT_PRESSED | tick >= DEL | **ST_BTN_UP**      | send EV_SYS_RELEASED |
+| **ST_BTN_RISING**  | EV_BTN_PRESSED     | tick < DEL  | **ST_BTN_DOWN**    | -                    |
+
+> **Nota:** Se utiliza la convención de identificadores sugerida (ST_BTN_NAME para estados y EV_BTN_NAME para eventos). El uso del timer `tick` es necesario para estabilizar la señal ante los fenómenos de *bounce* y *glitch* identificados en el modelo físico.
