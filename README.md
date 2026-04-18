@@ -4,4 +4,4 @@
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
-| XXXXXX | YYYY, ZZZ | | Semana 04 |
+| 110473 | Kiuan, Emiliano Ariel | 01-04-26 | Semana 04 |
