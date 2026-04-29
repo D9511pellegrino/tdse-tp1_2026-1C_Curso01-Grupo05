@@ -4,4 +4,4 @@
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
-| 110473 | Kiuan, Emiliano Ariel | 01-04-26 | Semana 04 |
+| 110532 | Mancaniello, Ezequiel | 01-04-26 | Semana 04 |
